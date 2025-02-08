@@ -23,6 +23,13 @@ const gameboard = (function() {
         board.forEach(row => row.fill(null));
     };
 
+    const rowHasWinner = function() {
+        return board.some(row => {
+            const allItemsMatch = row.every(item => item === row[0]);
+            return allItemsMatch && !row.includes(null);
+        });
+    };
+
     return { 
         logBoard, 
         isValidMove, 
