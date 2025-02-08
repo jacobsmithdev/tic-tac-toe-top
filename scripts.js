@@ -44,6 +44,30 @@ const gameboard = (function() {
         });
     };
 
+    const diagonalHasWinner = function() {
+        // Algorithmically checking diagonals is possible, but a brute force 
+        // check here is simpler since we only ever need to handle a 3x3 grid. 
+        const downDiagonal = [
+            board[0][0], 
+            board[1][1], 
+            board[2][2],
+        ];
+        
+        const downDiagonalMatches = downDiagonal.every(item => item === downDiagonal[0]);
+        if (!downDiagonal.includes(null) && downDiagonalMatches) return true;
+
+        const upDiagonal = [
+            board[2][0], 
+            board[1][1], 
+            board[0][2],
+        ];
+        
+        const upDiagonalMatches = upDiagonal.every(item => item === upDiagonal[0]);
+        if (!upDiagonal.includes(null) && upDiagonalMatches) return true;
+
+        return false;
+    };
+
     return { 
         logBoard, 
         isValidMove, 
