@@ -68,6 +68,13 @@ const gameboard = (function() {
         return false;
     };
 
+    const isBoardFilled = function() {
+        const boardFilled = board.every(row => {
+            return row.every(item => item !== null);
+        });
+        return boardFilled;
+    }
+
     return { 
         logBoard, 
         isValidMove, 
