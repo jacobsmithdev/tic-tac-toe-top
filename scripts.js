@@ -75,10 +75,22 @@ const gameboard = (function() {
         return boardFilled;
     }
 
+    const hasWinner = function() {
+        if (rowHasWinner() || colHasWinner() || diagonalHasWinner()) {
+            return true;
+        } else if (isBoardFilled()) {
+            // If no winner exists and board is full, the game is a tie
+            return null;
+        } else {
+            return false;
+        }
+    }
+
     return { 
         logBoard, 
         isValidMove, 
         addMove, 
         resetBoard, 
+        hasWinner,
     }
 })();
