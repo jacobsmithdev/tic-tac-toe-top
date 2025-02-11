@@ -12,7 +12,9 @@ const gameboard = (function() {
         console.table(board);
     };
 
+    // Function expects zero indexed input ([0] [1] [2], NOT [1], [2], [3])
     const isValidMove = function(row, col) {
+        if (row >= BOARD_SIZE || col >= BOARD_SIZE) return false;
         if (board[row][col]) return false;
         return true;
     };
