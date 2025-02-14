@@ -29,7 +29,12 @@ const gameboard = (function() {
     };
 
     const addMove = function(row, col, char) {
-        if (isValidMove(row, col)) board[row][col] = char;
+        if (isValidMove(row, col)) {
+            board[row][col] = char;
+            return true;
+        } else {
+            return false;
+        }
     };
     
     const resetBoard = function() {
