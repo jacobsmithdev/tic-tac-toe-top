@@ -110,3 +110,35 @@ const gameboard = (function() {
         hasWinner,
     }
 })();
+
+const gameController = (function(gameboard) {
+    const player1 = {
+        name: "player1",
+        id: 0,
+        icon: "X",
+    };
+
+    const player2 = {
+        name: "player2",
+        id: 1,
+        icon: "O",
+    };
+
+    let currentPlayer = player1;
+
+    const switchCurrentPlayer = function() {
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+    };
+
+    const playRound = function(row, col) {
+        console.log(`${currentPlayer.name}'s  (${currentPlayer.icon}) turn:`)
+        console.log(`${currentPlayer.name} (${currentPlayer.icon}) played (${row}, ${col})`)
+        const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
+        if (moveAdded) switchCurrentPlayer();
+        gameboard.logBoard();
+    };
+
+    return {
+        playRound,
+    }
+})(gameboard);
