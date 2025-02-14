@@ -25,7 +25,7 @@ const gameboard = (function() {
     };
 
     const addMove = function(row, col, char) {
-        board[row][col] = char;
+        if (isValidMove(row, col)) board[row][col] = char;
     };
     
     const resetBoard = function() {
@@ -95,7 +95,6 @@ const gameboard = (function() {
 
     return { 
         logBoard, 
-        isValidMove, 
         addMove, 
         resetBoard, 
         hasWinner,
