@@ -133,10 +133,35 @@ const gameController = (function(gameboard) {
     const playRound = function(row, col) {
         console.log(`${currentPlayer.name}'s  (${currentPlayer.icon}) turn:`)
         console.log(`${currentPlayer.name} (${currentPlayer.icon}) played (${row}, ${col})`)
+        
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
-        if (moveAdded) switchCurrentPlayer();
+        if (!moveAdded) return;
+        
         gameboard.logBoard();
+
+        if (gameboard.hasWinner()) {
+            handleWin(currentPlayer);
+        } else if (gameboard.hasWinner() === null) {
+            handleTie();
+        } else {
+            switchCurrentPlayer();
+        }
     };
+
+    const resetGame = function() {
+        gameboard.resetBoard();
+        currentPlayer = player1;
+    }
+
+    const handleWin = function(winner) {
+        console.log(`${winner.name} (${winner.icon}) wins!`);
+        resetGame();
+    }
+
+    const handleTie = function() {
+        console.log('Tie!')
+        resetGame();
+    }
 
     return {
         playRound,
