@@ -167,7 +167,8 @@ const displayController = (function() {
 
     const updateDisplay = function() {
         boardDisplay.innerText = '';
-        board = gameboard.getBoard();
+
+        const board = gameboard.getBoard();
 
         board.forEach((row, rowIndex) => {
             row.forEach((item, colIndex) => {
