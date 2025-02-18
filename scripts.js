@@ -8,10 +8,6 @@ const gameboard = (function() {
         [null, null, null],
     ];
 
-    const logBoard = function() {
-        console.table(board);
-    };
-
     const getBoard = function() {
         return board;
     }
@@ -103,7 +99,6 @@ const gameboard = (function() {
     }
 
     return { 
-        logBoard, 
         getBoard,
         addMove, 
         resetBoard, 
@@ -135,14 +130,9 @@ const gameController = (function(gameboard) {
     };
 
     const playRound = function(row, col) {
-        console.log(`${currentPlayer.name}'s  (${currentPlayer.icon}) turn:`)
-        console.log(`${currentPlayer.name} (${currentPlayer.icon}) played (${row}, ${col})`)
-        
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
         if (!moveAdded) return;
         
-        gameboard.logBoard();
-
         if (gameboard.hasWinner()) {
             handleWin(currentPlayer);
         } else if (gameboard.hasWinner() === null) {
@@ -157,13 +147,11 @@ const gameController = (function(gameboard) {
         currentPlayer = player1;
     }
 
-    const handleWin = function(winner) {
-        console.log(`${winner.name} (${winner.icon}) wins!`);
+    const handleWin = function() {
         resetGame();
     }
 
     const handleTie = function() {
-        console.log('Tie!')
         resetGame();
     }
 
