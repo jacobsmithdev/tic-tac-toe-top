@@ -167,3 +167,32 @@ const gameController = (function(gameboard) {
         playRound,
     }
 })(gameboard);
+
+const displayController = (function() {
+    const boardDisplay = document.querySelector('.board');
+
+    const updateDisplay = function() {
+        boardDisplay.innerText = '';
+        board = gameboard.getBoard();
+
+        board.forEach((row, rowIndex) => {
+            row.forEach((item, colIndex) => {
+                const cell = document.createElement('button');
+                
+                cell.dataset.row = rowIndex;
+                cell.dataset.col = colIndex;
+                cell.innerText = board[rowIndex][colIndex];
+
+                boardDisplay.append(cell);
+            });
+        });
+    };
+
+    boardDisplay.addEventListener('click', (e) => {
+        if (!e.target) return;
+        gameController.playRound(e.target.dataset.row, e.target.dataset.col);
+        updateDisplay();
+    });
+
+    updateDisplay();
+})();
