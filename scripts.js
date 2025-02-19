@@ -38,10 +38,10 @@ const gameboard = (function() {
     };
 
     const rowHasWinner = function(playerIcon) {
-        return board.some(row => {
-            const allItemsMatch = row.every(item => item === playerIcon);
-            return allItemsMatch;
-        });
+        for (let row = 0; row < BOARD_SIZE; row++) {
+            const rowItems = board[row];
+            if (rowItems.every(item => item === playerIcon)) return true;
+        }
     };
 
     const colHasWinner = function(playerIcon) {
