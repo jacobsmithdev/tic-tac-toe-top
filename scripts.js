@@ -87,7 +87,7 @@ const gameboard = (function() {
         return boardFilled;
     }
 
-    const hasWinner = function(player) {
+    const checkForWin = function(player) {
         if (rowHasWinner(player.icon) || colHasWinner(player.icon) || diagonalHasWinner(player.icon)) {
             return true;
         } else if (isBoardFilled()) {
@@ -102,7 +102,7 @@ const gameboard = (function() {
         getBoard,
         addMove, 
         resetBoard, 
-        hasWinner,
+        checkForWin,
     }
 })();
 
@@ -133,9 +133,9 @@ const gameController = (function(gameboard) {
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
         if (!moveAdded) return;
         
-        if (gameboard.hasWinner(currentPlayer)) {
+        if (gameboard.checkForWin(currentPlayer)) {
             handleWin(currentPlayer);
-        } else if (gameboard.hasWinner(currentPlayer) === null) {
+        } else if (gameboard.checkForWin(currentPlayer) === null) {
             handleTie();
         } else {
             switchCurrentPlayer();
