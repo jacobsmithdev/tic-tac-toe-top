@@ -37,26 +37,26 @@ const gameboard = (function() {
         board.forEach(row => row.fill(null));
     };
 
-    const rowHasWinner = function() {
+    const rowHasWinner = function(playerIcon) {
         return board.some(row => {
-            const allItemsMatch = row.every(item => item === row[0]);
-            return allItemsMatch && !row.includes(null);
+            const allItemsMatch = row.every(item => item === playerIcon);
+            return allItemsMatch;
         });
     };
 
-    const colHasWinner = function() {
+    const colHasWinner = function(playerIcon) {
         const firstRow = board[0];
         return firstRow.some((firstItem, col) => {
             let allItemsMatch = true;
             for (row = 0; row < BOARD_SIZE; row++) {
                 const item = board[row][col];
-                if (item !== firstItem) allItemsMatch = false;
+                if (item !== playerIcon) allItemsMatch = false;
             }
-            return firstItem !== null && allItemsMatch;
+            return allItemsMatch;
         });
     };
 
-    const diagonalHasWinner = function() {
+    const diagonalHasWinner = function(playerIcon) {
         // Algorithmically checking diagonals is possible, but a brute force 
         // check here is simpler since we only ever need to handle a 3x3 grid. 
         const downDiagonal = [
@@ -65,8 +65,8 @@ const gameboard = (function() {
             board[2][2],
         ];
         
-        const downDiagonalMatches = downDiagonal.every(item => item === downDiagonal[0]);
-        if (!downDiagonal.includes(null) && downDiagonalMatches) return true;
+        const downDiagonalMatches = downDiagonal.every(item => item === playerIcon);
+        if (downDiagonalMatches) return true;
 
         const upDiagonal = [
             board[2][0], 
@@ -74,8 +74,8 @@ const gameboard = (function() {
             board[0][2],
         ];
         
-        const upDiagonalMatches = upDiagonal.every(item => item === upDiagonal[0]);
-        if (!upDiagonal.includes(null) && upDiagonalMatches) return true;
+        const upDiagonalMatches = upDiagonal.every(item => item === playerIcon);
+        if (upDiagonalMatches) return true;
 
         return false;
     };
@@ -87,8 +87,8 @@ const gameboard = (function() {
         return boardFilled;
     }
 
-    const hasWinner = function() {
-        if (rowHasWinner() || colHasWinner() || diagonalHasWinner()) {
+    const hasWinner = function(player) {
+        if (rowHasWinner(player.icon) || colHasWinner(player.icon) || diagonalHasWinner(player.icon)) {
             return true;
         } else if (isBoardFilled()) {
             // If no winner exists and board is full, the game is a tie
@@ -133,9 +133,9 @@ const gameController = (function(gameboard) {
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
         if (!moveAdded) return;
         
-        if (gameboard.hasWinner()) {
+        if (gameboard.hasWinner(currentPlayer)) {
             handleWin(currentPlayer);
-        } else if (gameboard.hasWinner() === null) {
+        } else if (gameboard.hasWinner(currentPlayer) === null) {
             handleTie();
         } else {
             switchCurrentPlayer();
