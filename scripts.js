@@ -107,6 +107,8 @@ const gameboard = (function() {
 })();
 
 const gameController = (function(gameboard) {
+    let gameOver = false;
+
     const player1 = {
         name: "player1",
         id: 0,
@@ -130,34 +132,29 @@ const gameController = (function(gameboard) {
     };
 
     const playRound = function(row, col) {
+        if (gameOver) return;
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
         if (!moveAdded) return;
         
         if (gameboard.checkForWin(currentPlayer)) {
-            handleWin(currentPlayer);
+            gameOver = true;
         } else if (gameboard.checkForWin(currentPlayer) === null) {
-            handleTie();
+            gameOver = true;
         } else {
             switchCurrentPlayer();
         }
     };
 
     const resetGame = function() {
+        gameOver = false;
         gameboard.resetBoard();
         currentPlayer = player1;
-    }
-
-    const handleWin = function() {
-        resetGame();
-    }
-
-    const handleTie = function() {
-        resetGame();
     }
 
     return {
         playRound,
         getCurrentPlayer,
+        resetGame,
     }
 })(gameboard);
 
