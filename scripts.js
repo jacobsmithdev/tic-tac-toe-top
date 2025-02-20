@@ -162,6 +162,7 @@ const displayController = (function() {
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
     const startBtn = document.querySelector('.start');
+    const resultDisplay = document.querySelector('.result');
 
     const updateDisplay = function() {
         boardDisplay.innerText = '';
@@ -189,14 +190,28 @@ const displayController = (function() {
         const row = e.target.dataset.row;
         const col = e.target.dataset.col;
         gameController.playRound(row, col);
+        const currentPlayer = gameController.getCurrentPlayer();
+
+        const hasWinner = gameboard.checkForWin(currentPlayer);
+        if (hasWinner) handleWinner(currentPlayer);
+        if (hasWinner === null) handleTie();
         updateDisplay();
     });
 
     startBtn.addEventListener('click', (e) => {
         gameController.resetGame();
         startBtn.innerText = 'Restart';
+        resultDisplay.innerText = '';
         updateDisplay();
     });
+
+    const handleWinner = function(winner) {
+        resultDisplay.innerText = `${winner.name} (${winner.icon}) wins!`;
+    }
+    
+    const handleTie = function() {
+        resultDisplay.innerText = 'tie!';
+    }
 
     updateDisplay();
 })();
