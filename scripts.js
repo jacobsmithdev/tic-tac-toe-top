@@ -161,6 +161,7 @@ const gameController = (function(gameboard) {
 const displayController = (function() {
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
+    const startBtn = document.querySelector('.start');
 
     const updateDisplay = function() {
         boardDisplay.innerText = '';
@@ -186,6 +187,12 @@ const displayController = (function() {
     boardDisplay.addEventListener('click', (e) => {
         if (!e.target) return;
         gameController.playRound(e.target.dataset.row, e.target.dataset.col);
+        updateDisplay();
+    });
+
+    startBtn.addEventListener('click', (e) => {
+        gameController.resetGame();
+        startBtn.innerText = 'Restart';
         updateDisplay();
     });
 
