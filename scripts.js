@@ -186,7 +186,9 @@ const displayController = (function() {
 
     boardDisplay.addEventListener('click', (e) => {
         if (!e.target) return;
-        gameController.playRound(e.target.dataset.row, e.target.dataset.col);
+        const row = e.target.dataset.row;
+        const col = e.target.dataset.col;
+        gameController.playRound(row, col);
         updateDisplay();
     });
 
