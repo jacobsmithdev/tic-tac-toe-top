@@ -106,20 +106,19 @@ const gameboard = (function() {
     }
 })();
 
+const createPlayer = function(name, id, icon) {
+    return {
+        name,
+        id,
+        icon
+    };
+}
+
 const gameController = (function(gameboard) {
     let gameOver = true;
 
-    const player1 = {
-        name: "player1",
-        id: 0,
-        icon: "X",
-    };
-
-    const player2 = {
-        name: "player2",
-        id: 1,
-        icon: "O",
-    };
+    const player1 = createPlayer("player1", 0, "X");
+    const player2 = createPlayer("player2", 1, "O");
 
     let currentPlayer = player1;
 
