@@ -117,8 +117,8 @@ const createPlayer = function(name, id, icon) {
 const gameController = (function(gameboard) {
     let gameOver = true;
 
-    const player1 = createPlayer("player1", 0, "X");
-    const player2 = createPlayer("player2", 1, "O");
+    const player1 = createPlayer('player1', 0, 'X');
+    const player2 = createPlayer('player2', 1, 'O');
 
     let currentPlayer = player1;
 
