@@ -107,7 +107,7 @@ const gameboard = (function() {
 })();
 
 const gameController = (function(gameboard) {
-    let gameOver = false;
+    let gameOver = true;
 
     const player1 = {
         name: "player1",
