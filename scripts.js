@@ -114,11 +114,8 @@ const createPlayer = function(name, id, icon) {
     };
 }
 
-const gameController = (function(gameboard) {
+const createGameController = function(gameboard, player1, player2) {
     let gameOver = true;
-
-    const player1 = createPlayer('player1', 0, 'X');
-    const player2 = createPlayer('player2', 1, 'O');
 
     let currentPlayer = player1;
 
@@ -155,13 +152,18 @@ const gameController = (function(gameboard) {
         getCurrentPlayer,
         resetGame,
     }
-})(gameboard);
+};
 
 const displayController = (function() {
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
     const startBtn = document.querySelector('.start');
     const resultDisplay = document.querySelector('.result');
+
+    const player1 = createPlayer('player1', 0, 'X');
+    const player2 = createPlayer('player2', 1, 'O');
+
+    const gameController = createGameController(gameboard, player1, player2);
 
     const updateDisplay = function() {
         boardDisplay.innerText = '';
