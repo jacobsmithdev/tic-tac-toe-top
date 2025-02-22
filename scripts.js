@@ -160,15 +160,13 @@ const createGameController = function(gameboard, player1, player2) {
 };
 
 const displayController = (function() {
+    const form = document.querySelector('.form');
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
     const startBtn = document.querySelector('.start');
     const resultDisplay = document.querySelector('.result');
 
-    const player1 = createPlayer('player1', 0, 'X');
-    const player2 = createPlayer('player2', 1, 'O');
-
-    const gameController = createGameController(gameboard, player1, player2);
+    let gameController;
 
     const updateDisplay = function() {
         updateBoardDisplay();
@@ -195,12 +193,13 @@ const displayController = (function() {
     };
 
     const updateTurnDisplay = function() {
+        if (!gameController) return;
         const currentPlayer = gameController.getCurrentPlayer();
         turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
     }
 
     boardDisplay.addEventListener('click', (e) => {
-        if (!e.target) return;
+        if (!e.target || !gameController) return;
         const row = e.target.dataset.row;
         const col = e.target.dataset.col;
         gameController.playRound(row, col);
@@ -208,6 +207,13 @@ const displayController = (function() {
     });
 
     startBtn.addEventListener('click', (e) => {
+        const player1Name = form.querySelector('#player-1-name').value;
+        const player2Name = form.querySelector('#player-2-name').value;
+
+        const player1 = createPlayer(player1Name, 0, 'X');
+        const player2 = createPlayer(player2Name, 1, 'O');
+
+        gameController = createGameController(gameboard, player1, player2);
         gameController.resetGame();
         startBtn.innerText = 'Restart';
         resultDisplay.innerText = '';
@@ -215,6 +221,8 @@ const displayController = (function() {
     });
 
     const updateResultDisplay = function() {
+        if (!gameController) return;
+
         const currentPlayer = gameController.getCurrentPlayer();
         const hasWinner = gameboard.checkForWin(currentPlayer);
         if (hasWinner) {
