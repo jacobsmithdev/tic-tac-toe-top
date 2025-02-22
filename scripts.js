@@ -166,6 +166,12 @@ const displayController = (function() {
     const gameController = createGameController(gameboard, player1, player2);
 
     const updateDisplay = function() {
+        updateBoardDisplay();
+        const currentPlayer = gameController.getCurrentPlayer();
+        turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+    };
+
+    const updateBoardDisplay = function() {
         boardDisplay.innerText = '';
 
         const board = gameboard.getBoard();
@@ -181,9 +187,6 @@ const displayController = (function() {
                 boardDisplay.append(cell);
             });
         });
-
-        const currentPlayer = gameController.getCurrentPlayer();
-        turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
     };
 
     boardDisplay.addEventListener('click', (e) => {
