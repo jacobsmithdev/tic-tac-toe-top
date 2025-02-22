@@ -167,8 +167,7 @@ const displayController = (function() {
 
     const updateDisplay = function() {
         updateBoardDisplay();
-        const currentPlayer = gameController.getCurrentPlayer();
-        turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+        updateTurnDisplay();
     };
 
     const updateBoardDisplay = function() {
@@ -188,6 +187,11 @@ const displayController = (function() {
             });
         });
     };
+
+    const updateTurnDisplay = function() {
+        const currentPlayer = gameController.getCurrentPlayer();
+        turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+    }
 
     boardDisplay.addEventListener('click', (e) => {
         if (!e.target) return;
