@@ -147,10 +147,15 @@ const createGameController = function(gameboard, player1, player2) {
         currentPlayer = player1;
     }
 
+    const isGameOver = function() {
+        return gameOver;
+    }
+
     return {
         playRound,
         getCurrentPlayer,
         resetGame,
+        isGameOver,
     }
 };
 
