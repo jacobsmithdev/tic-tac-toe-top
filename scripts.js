@@ -168,6 +168,7 @@ const displayController = (function() {
     const updateDisplay = function() {
         updateBoardDisplay();
         updateTurnDisplay();
+        updateResultDisplay();
     };
 
     const updateBoardDisplay = function() {
@@ -198,11 +199,6 @@ const displayController = (function() {
         const row = e.target.dataset.row;
         const col = e.target.dataset.col;
         gameController.playRound(row, col);
-        const currentPlayer = gameController.getCurrentPlayer();
-
-        const hasWinner = gameboard.checkForWin(currentPlayer);
-        if (hasWinner) handleWinner(currentPlayer);
-        if (hasWinner === null) handleTie();
         updateDisplay();
     });
 
@@ -213,13 +209,15 @@ const displayController = (function() {
         updateDisplay();
     });
 
-    const handleWinner = function(winner) {
-        resultDisplay.innerText = `${winner.name} (${winner.icon}) wins!`;
-    }
-    
-    const handleTie = function() {
-        resultDisplay.innerText = 'tie!';
-    }
+    const updateResultDisplay = function() {
+        const currentPlayer = gameController.getCurrentPlayer();
+        const hasWinner = gameboard.checkForWin(currentPlayer);
+        if (hasWinner) {
+            resultDisplay.innerText = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
+        } else if (hasWinner === null) {
+            resultDisplay.innerText = 'tie!';
+        }
+    };
 
     updateDisplay();
 })();
