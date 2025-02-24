@@ -143,12 +143,6 @@ const createGameController = function(player1, player2) {
         }
     };
 
-    const resetGame = function() {
-        gameOver = false;
-        gameboard.resetBoard();
-        currentPlayer = player1;
-    }
-
     const isGameOver = function() {
         return gameOver;
     }
@@ -156,7 +150,6 @@ const createGameController = function(player1, player2) {
     return {
         playRound,
         getCurrentPlayer,
-        resetGame,
         isGameOver,
         getBoard: gameboard.getBoard,
         checkForWin: gameboard.checkForWin,
