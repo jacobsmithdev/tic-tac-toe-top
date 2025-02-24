@@ -117,7 +117,7 @@ const createPlayer = function(name, id, icon) {
 const createGameController = function(player1, player2) {
     const gameboard = createGameboard();
 
-    let gameOver = true;
+    let gameOver = false;
 
     let currentPlayer = player1;
 
@@ -230,7 +230,6 @@ const displayController = (function() {
         const player2 = createPlayer(player2Name, 1, 'O');
 
         gameController = createGameController(player1, player2);
-        gameController.resetGame();
         startBtn.innerText = 'Restart';
         resultDisplay.innerText = '';
         updateDisplay();
