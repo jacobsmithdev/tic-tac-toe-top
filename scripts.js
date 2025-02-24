@@ -193,9 +193,7 @@ const displayController = (function() {
     }
 
     const updateFormDisplay = function() {
-        if (!gameController) return;
-        const gameOver = gameController.isGameOver();
-        if (gameOver) {
+        if (!gameController || gameController.isGameOver()) {
             Array.from(form).forEach(fieldset => fieldset.removeAttribute('disabled'));
         } else {
             Array.from(form).forEach(fieldset => fieldset.setAttribute('disabled', true));
