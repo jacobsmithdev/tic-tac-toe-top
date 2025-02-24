@@ -32,10 +32,6 @@ const createGameboard = function() {
             return false;
         }
     };
-    
-    const resetBoard = function() {
-        board.forEach(row => row.fill(null));
-    };
 
     const rowHasWinner = function(playerIcon) {
         for (let row = 0; row < BOARD_SIZE; row++) {
@@ -101,7 +97,6 @@ const createGameboard = function() {
     return { 
         getBoard,
         addMove, 
-        resetBoard, 
         checkForWin,
     }
 };
