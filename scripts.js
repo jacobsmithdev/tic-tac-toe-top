@@ -1,4 +1,4 @@
-const gameboard = (function() {
+const createGameboard = function() {
     const BOARD_SIZE = 3;
 
     // Board formatted as [row][col]
@@ -104,7 +104,7 @@ const gameboard = (function() {
         resetBoard, 
         checkForWin,
     }
-})();
+};
 
 const createPlayer = function(name, id, icon) {
     return {
@@ -114,7 +114,9 @@ const createPlayer = function(name, id, icon) {
     };
 }
 
-const createGameController = function(gameboard, player1, player2) {
+const createGameController = function(player1, player2) {
+    const gameboard = createGameboard();
+
     let gameOver = true;
 
     let currentPlayer = player1;
@@ -156,6 +158,8 @@ const createGameController = function(gameboard, player1, player2) {
         getCurrentPlayer,
         resetGame,
         isGameOver,
+        getBoard: gameboard.getBoard,
+        checkForWin: gameboard.checkForWin,
     }
 };
 
@@ -176,9 +180,10 @@ const displayController = (function() {
     };
 
     const updateBoardDisplay = function() {
+        if (!gameController) return;
         boardDisplay.innerText = '';
 
-        const board = gameboard.getBoard();
+        const board = gameController.getBoard();
 
         board.forEach((row, rowIndex) => {
             row.forEach((item, colIndex) => {
@@ -224,7 +229,7 @@ const displayController = (function() {
         const player1 = createPlayer(player1Name, 0, 'X');
         const player2 = createPlayer(player2Name, 1, 'O');
 
-        gameController = createGameController(gameboard, player1, player2);
+        gameController = createGameController(player1, player2);
         gameController.resetGame();
         startBtn.innerText = 'Restart';
         resultDisplay.innerText = '';
@@ -235,7 +240,7 @@ const displayController = (function() {
         if (!gameController) return;
 
         const currentPlayer = gameController.getCurrentPlayer();
-        const hasWinner = gameboard.checkForWin(currentPlayer);
+        const hasWinner = gameController.checkForWin(currentPlayer);
         if (hasWinner) {
             resultDisplay.innerText = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
         } else if (hasWinner === null) {
