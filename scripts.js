@@ -172,6 +172,7 @@ const displayController = (function() {
         updateBoardDisplay();
         updateTurnDisplay();
         updateResultDisplay();
+        updateFormDisplay();
     };
 
     const updateBoardDisplay = function() {
@@ -196,6 +197,16 @@ const displayController = (function() {
         if (!gameController) return;
         const currentPlayer = gameController.getCurrentPlayer();
         turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+    }
+
+    const updateFormDisplay = function() {
+        if (!gameController) return;
+        const gameOver = gameController.isGameOver();
+        if (gameOver) {
+            Array.from(form).forEach(fieldset => fieldset.removeAttribute('disabled'));
+        } else {
+            Array.from(form).forEach(fieldset => fieldset.setAttribute('disabled', true));
+        }
     }
 
     boardDisplay.addEventListener('click', (e) => {
@@ -231,6 +242,8 @@ const displayController = (function() {
             resultDisplay.innerText = 'tie!';
         }
     };
+
+
 
     updateDisplay();
 })();
