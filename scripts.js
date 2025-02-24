@@ -219,7 +219,6 @@ const displayController = (function() {
 
         gameController = createGameController(player1, player2);
         startBtn.innerText = 'Restart';
-        resultDisplay.innerText = '';
         updateDisplay();
     });
 
@@ -232,6 +231,10 @@ const displayController = (function() {
             resultDisplay.innerText = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
         } else if (hasWinner === null) {
             resultDisplay.innerText = 'tie!';
+        } else {
+            // If no winner/tie (i.e. game still running), ensure
+            // no result is being displayed from a previous game
+            resultDisplay.innerText = '';
         }
     };
 
