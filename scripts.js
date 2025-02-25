@@ -157,6 +157,7 @@ const displayController = (function() {
     const turnDisplay = document.querySelector('.turn');
     const startBtn = document.querySelector('.start');
     const resultDisplay = document.querySelector('.result');
+    const restartBtn = document.querySelector('.restart');
 
     let gameController;
 
@@ -200,6 +201,11 @@ const displayController = (function() {
         }
     }
 
+    restartBtn.addEventListener('click', () => {
+        gameController = null;
+        updateDisplay();
+    });
+
     boardDisplay.addEventListener('click', (e) => {
         if (!e.target || !gameController) return;
         const row = e.target.dataset.row;
@@ -216,7 +222,6 @@ const displayController = (function() {
         const player2 = createPlayer(player2Name, 1, 'O');
 
         gameController = createGameController(player1, player2);
-        startBtn.innerText = 'Restart';
         updateDisplay();
     });
 
