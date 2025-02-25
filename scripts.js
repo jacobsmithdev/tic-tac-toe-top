@@ -173,7 +173,7 @@ const displayController = (function() {
             Array.from(boardDisplay.children).forEach(btn => btn.disabled = true)
             return;
         };
-        boardDisplay.innerText = '';
+        boardDisplay.textContent = '';
 
         const board = gameController.getBoard();
 
@@ -185,7 +185,7 @@ const displayController = (function() {
                 }
                 cell.dataset.row = rowIndex;
                 cell.dataset.col = colIndex;
-                cell.innerText = board[rowIndex][colIndex];
+                cell.textContent = board[rowIndex][colIndex];
 
                 boardDisplay.append(cell);
             });
@@ -195,7 +195,7 @@ const displayController = (function() {
     const updateTurnDisplay = function() {
         if (!gameController) return;
         const currentPlayer = gameController.getCurrentPlayer();
-        turnDisplay.innerText = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+        turnDisplay.textContent = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
     }
 
     const updateFormDisplay = function() {
@@ -236,13 +236,13 @@ const displayController = (function() {
         const currentPlayer = gameController.getCurrentPlayer();
         const hasWinner = gameController.checkForWin(currentPlayer);
         if (hasWinner) {
-            resultDisplay.innerText = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
+            resultDisplay.textContent = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
         } else if (hasWinner === null) {
-            resultDisplay.innerText = 'tie!';
+            resultDisplay.textContent = 'tie!';
         } else {
             // If no winner/tie (i.e. game still running), ensure
             // no result is being displayed from a previous game
-            resultDisplay.innerText = '';
+            resultDisplay.textContent = '';
         }
     };
 
