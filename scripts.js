@@ -169,7 +169,10 @@ const displayController = (function() {
     };
 
     const updateBoardDisplay = function() {
-        if (!gameController) return;
+        if (!gameController) {
+            Array.from(boardDisplay.children).forEach(btn => btn.disabled = true)
+            return;
+        };
         boardDisplay.innerText = '';
 
         const board = gameController.getBoard();
@@ -177,7 +180,9 @@ const displayController = (function() {
         board.forEach((row, rowIndex) => {
             row.forEach((item, colIndex) => {
                 const cell = document.createElement('button');
-                
+                if (gameController.isGameOver()) {
+                    cell.disabled = true;
+                }
                 cell.dataset.row = rowIndex;
                 cell.dataset.col = colIndex;
                 cell.innerText = board[rowIndex][colIndex];
