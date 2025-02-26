@@ -167,6 +167,7 @@ const displayController = (function() {
         updateResultDisplay();
         updateFormDisplay();
         updateRestartBtnDisplay();
+        updateStartBtnDisplay();
     };
 
     const updateBoardDisplay = function() {
@@ -207,6 +208,14 @@ const displayController = (function() {
             Array.from(form).forEach(fieldset => fieldset.removeAttribute('disabled'));
         } else {
             Array.from(form).forEach(fieldset => fieldset.setAttribute('disabled', true));
+        }
+    }
+
+    const updateStartBtnDisplay = function() {
+        if (!gameController || gameController.isGameOver()) {
+            startBtn.disabled = false;
+        } else {
+            startBtn.disabled = true;
         }
     }
 
