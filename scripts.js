@@ -232,8 +232,19 @@ const displayController = (function() {
         const player1Name = form.querySelector('#player-1-name').value;
         const player2Name = form.querySelector('#player-2-name').value;
 
-        const player1Icon = form.querySelector('#player-1-icon').value;
-        const player2Icon = form.querySelector('#player-2-icon').value;
+        let player1Icon = form.querySelector('#player-1-icon').value;
+        let player2Icon = form.querySelector('#player-2-icon').value;
+
+        player1Icon = player1Icon.slice(0, 3).trim();
+        player2Icon = player2Icon.slice(0, 3).trim();
+
+        if (!player1Icon) player1Icon = "X";
+        if (!player2Icon) player2Icon = "O";
+
+        if (player1Icon === player2Icon) {
+            player1Icon = "X";
+            player2Icon = "O";
+        }
 
         const player1 = createPlayer(player1Name, 0, player1Icon);
         const player2 = createPlayer(player2Name, 1, player2Icon);
