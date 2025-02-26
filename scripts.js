@@ -232,8 +232,11 @@ const displayController = (function() {
         const player1Name = form.querySelector('#player-1-name').value;
         const player2Name = form.querySelector('#player-2-name').value;
 
-        const player1 = createPlayer(player1Name, 0, 'X');
-        const player2 = createPlayer(player2Name, 1, 'O');
+        const player1Icon = form.querySelector('#player-1-icon').value;
+        const player2Icon = form.querySelector('#player-2-icon').value;
+
+        const player1 = createPlayer(player1Name, 0, player1Icon);
+        const player2 = createPlayer(player2Name, 1, player2Icon);
 
         gameController = createGameController(player1, player2);
         updateDisplay();
