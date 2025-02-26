@@ -152,7 +152,7 @@ const createGameController = function(player1, player2) {
 };
 
 const displayController = (function() {
-    const form = document.querySelector('.form');
+    const form = document.querySelector('#player-input-form');
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
     const startBtn = document.querySelector('.start');
