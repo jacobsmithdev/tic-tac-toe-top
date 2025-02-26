@@ -194,7 +194,10 @@ const displayController = (function() {
     };
 
     const updateTurnDisplay = function() {
-        if (!gameController) return;
+        if (!gameController || gameController.isGameOver()) {
+            turnDisplay.textContent = '';
+            return;
+        };
         const currentPlayer = gameController.getCurrentPlayer();
         turnDisplay.textContent = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
     }
