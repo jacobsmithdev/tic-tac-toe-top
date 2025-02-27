@@ -33,13 +33,13 @@ img {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
-    grid-template-areas: "player-inputs"
+    grid-template-areas: "player-input-form"
                          "game-controls"
                          "gameboard";
 }
 
-.player-inputs {
-    grid-area: player-inputs;
+.player-input-form {
+    grid-area: player-input-form;
 }
 
 .game-controls {
