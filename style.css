@@ -38,7 +38,7 @@ img {
                          "gameboard";
 }
 
-.form {
+.player-inputs {
     grid-area: player-inputs;
 }
 
