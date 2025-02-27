@@ -29,7 +29,25 @@ img {
     height: auto;
 }
 
+.layout-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "player-inputs"
+                         "game-controls"
+                         "gameboard";
+}
+
+.form {
+    grid-area: player-inputs;
+}
+
+.game-controls {
+    grid-area: game-controls;
+}
+
 .board {
+    grid-area: gameboard;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
