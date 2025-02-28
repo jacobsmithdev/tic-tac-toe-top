@@ -36,6 +36,7 @@ img {
     grid-template-areas: "player-input-form"
                          "game-controls"
                          "gameboard";
+    gap: 8px;
 }
 
 .player-input-form {
