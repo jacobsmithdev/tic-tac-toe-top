@@ -115,3 +115,47 @@ img {
 .board__cell:disabled:hover {
     outline: 1px solid rgb(148, 148, 148);
 }
+
+.button {
+    border: 2px solid black;
+    background-color: white;
+    padding: 6px 10px;
+    font-weight: bold;
+}
+
+.button:hover {
+    border: 2px solid rgb(65, 65, 65);
+    color: rgb(65, 65, 65);
+    cursor: pointer;
+}
+
+.button:disabled {
+    border: 2px solid rgb(148, 148, 148);
+    color: rgb(148, 148, 148);
+}
+
+.button:disabled:hover {
+    border: 2px solid rgb(165, 165, 165);
+    color: rgb(165, 165, 165);
+    cursor: default;
+}
+
+.button--start {
+    border: 2px solid rgb(114, 196, 76);
+    color: rgb(114, 196, 76);
+}
+
+.button--start:hover {
+    border: 2px solid rgb(120, 214, 76);
+    color: rgb(120, 214, 76);
+}
+
+.button--restart {
+    border: 2px solid rgb(196, 76, 76);
+    color: rgb(196, 76, 76);
+}
+
+.button--restart:hover {
+    border: 2px solid rgb(196, 76, 76);
+    color: rgb(196, 76, 76);
+}
