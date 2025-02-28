@@ -155,9 +155,9 @@ const displayController = (function() {
     const form = document.querySelector('#player-input-form');
     const boardDisplay = document.querySelector('.board');
     const turnDisplay = document.querySelector('.turn');
-    const startBtn = document.querySelector('.start');
+    const startBtn = document.querySelector('#start');
     const resultDisplay = document.querySelector('.result');
-    const restartBtn = document.querySelector('.restart');
+    const restartBtn = document.querySelector('#restart');
 
     let gameController;
 
@@ -185,7 +185,7 @@ const displayController = (function() {
         } else {
             boardDisplay.classList.remove('board--disabled');
         }
-        
+
         board.forEach((row, rowIndex) => {
             row.forEach((item, colIndex) => {
                 const cell = document.createElement('button');
