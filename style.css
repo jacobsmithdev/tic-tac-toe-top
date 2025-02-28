@@ -40,6 +40,38 @@ img {
 
 .player-input-form {
     grid-area: player-input-form;
+    justify-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.fieldset {
+    flex: 1;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: auto;
+    align-items: center;
+    gap: 8px;
+}
+
+.fieldset__legend {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 4px 8px;
+}
+
+.fieldset__label {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.fieldset__input {
+    border: 1px solid black;
+    padding: 4px 8px;
 }
 
 .game-controls {
