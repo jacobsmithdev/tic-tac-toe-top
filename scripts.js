@@ -173,12 +173,19 @@ const displayController = (function() {
     const updateBoardDisplay = function() {
         if (!gameController) {
             Array.from(boardDisplay.children).forEach(btn => btn.disabled = true)
+            boardDisplay.classList.add('board--disabled');
             return;
         };
         boardDisplay.textContent = '';
 
         const board = gameController.getBoard();
 
+        if (gameController.isGameOver()) {
+            boardDisplay.classList.add('board--disabled');
+        } else {
+            boardDisplay.classList.remove('board--disabled');
+        }
+        
         board.forEach((row, rowIndex) => {
             row.forEach((item, colIndex) => {
                 const cell = document.createElement('button');
@@ -188,6 +195,8 @@ const displayController = (function() {
                 cell.dataset.row = rowIndex;
                 cell.dataset.col = colIndex;
                 cell.textContent = board[rowIndex][colIndex];
+
+                cell.classList.add('board__cell')
 
                 boardDisplay.append(cell);
             });

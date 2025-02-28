@@ -83,7 +83,35 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 200px;
-    height: 200px;
-    margin: 16px auto;
+    width: 225px;
+    height: 225px;
+    justify-self: center;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid black;
+}
+
+.board--disabled {
+    border: 1px solid rgb(148, 148, 148);
+}
+
+.board__cell {
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    font-size: 1.25rem;
+}
+
+.board__cell:disabled {
+    border: 1px solid rgb(148, 148, 148);
+    color: rgb(148, 148, 148);
+}
+
+.board__cell:hover {
+    outline: 1px solid black;
+    font-weight: bold;
+}
+
+.board__cell:disabled:hover {
+    outline: 1px solid rgb(148, 148, 148);
 }
