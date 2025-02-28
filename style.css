@@ -76,6 +76,7 @@ img {
 
 .game-controls {
     grid-area: game-controls;
+    justify-self: center;
 }
 
 .board {
