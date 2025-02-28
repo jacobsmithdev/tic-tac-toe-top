@@ -209,7 +209,7 @@ const displayController = (function() {
             return;
         };
         const currentPlayer = gameController.getCurrentPlayer();
-        turnDisplay.textContent = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn:`
+        turnDisplay.textContent = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn`
     }
 
     const updateFormDisplay = function() {
