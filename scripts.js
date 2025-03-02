@@ -14,10 +14,6 @@ const createGameboard = function() {
 
     // Function expects zero indexed input ([0] [1] [2], NOT [1], [2], [3])
     const isValidMove = function(row, col) {
-        const outsideBoard = row >= BOARD_SIZE && col >= BOARD_SIZE;
-        if (outsideBoard) return false;
-
-        // Check array AFTER we ensure our (row, col) is within the board
         const celltaken = board[row][col] !== null;
         if (celltaken) return false;
 
