@@ -14,10 +14,8 @@ const createGameboard = function() {
 
     // Function expects zero indexed input ([0] [1] [2], NOT [1], [2], [3])
     const isValidMove = function(row, col) {
-        const celltaken = board[row][col] !== null;
-        if (celltaken) return false;
-
-        return true;
+        const cellEmpty = board[row][col] === null;
+        return cellEmpty;
     };
 
     const addMove = function(row, col, char) {
