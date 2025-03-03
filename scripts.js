@@ -123,9 +123,9 @@ const createGameController = function(player1, player2) {
         const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
         if (!moveAdded) return;
         
-        if (gameboard.checkForWin(currentPlayer)) {
-            gameOver = true;
-        } else if (gameboard.checkForWin(currentPlayer) === null) {
+        const hasWinner = gameboard.checkForWin(currentPlayer);
+        // If hasWinner is null, the game is a tie
+        if (hasWinner || hasWinner === null) {
             gameOver = true;
         } else {
             switchCurrentPlayer();
