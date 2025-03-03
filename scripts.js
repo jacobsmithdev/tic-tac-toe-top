@@ -12,12 +12,13 @@ const createGameboard = function() {
         return board;
     }
 
-    // Function expects zero indexed input ([0] [1] [2], NOT [1], [2], [3])
+    // Expects zero indexed inputs (e.g. [0] [1] [2], NOT [1], [2], [3])
     const isValidMove = function(row, col) {
         const cellEmpty = board[row][col] === null;
         return cellEmpty;
     };
 
+    // Expects zero indexed inputs (e.g. [0] [1] [2], NOT [1], [2], [3])
     const addMove = function(row, col, char) {
         if (isValidMove(row, col)) {
             board[row][col] = char;
