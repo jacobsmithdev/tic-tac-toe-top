@@ -1,85 +1,44 @@
 const createGameboard = function() {
-    const BOARD_SIZE = 3;
-
-    // Board formatted as [row][col]
+    // Treat board[0] as top left cell, e.g.:
+    // [0][1][2]
+    // [3][4][5]
+    // [6][7][8]
     const board = [
-        [null, null, null],
-        [null, null, null],
-        [null, null, null],
+        null, null, null, null, null, null, null, null, null,
+    ];
+
+    const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Cols
+        [0, 4, 8], [2, 4, 6], // Diagonals
     ];
 
     const getBoard = function() {
         return board;
     }
 
-    // Expects zero indexed inputs (e.g. [0] [1] [2], NOT [1], [2], [3])
-    const isValidMove = function(row, col) {
-        const cellEmpty = board[row][col] === null;
+    // Expects zero indexed input (e.g. [0] [1] [2], NOT [1], [2], [3])
+    const isValidMove = function(cell) {
+        const cellEmpty = board[cell] === null;
         return cellEmpty;
     };
 
-    // Expects zero indexed inputs (e.g. [0] [1] [2], NOT [1], [2], [3])
-    const addMove = function(row, col, char) {
-        if (isValidMove(row, col)) {
-            board[row][col] = char;
+    // Expects zero indexed input (e.g. [0] [1] [2], NOT [1], [2], [3])
+    const addMove = function(cell, char) {
+        if (isValidMove(cell)) {
+            board[cell] = char;
             return true;
         } else {
             return false;
         }
     };
 
-    const rowHasWinner = function(playerIcon) {
-        for (let row = 0; row < BOARD_SIZE; row++) {
-            const rowItems = board[row];
-            if (rowItems.every(item => item === playerIcon)) return true;
-        }
-    };
-
-    const colHasWinner = function(playerIcon) {
-        const firstRow = board[0];
-        return firstRow.some((firstItem, col) => {
-            let allItemsMatch = true;
-            for (row = 0; row < BOARD_SIZE; row++) {
-                const item = board[row][col];
-                if (item !== playerIcon) allItemsMatch = false;
-            }
-            return allItemsMatch;
-        });
-    };
-
-    const diagonalHasWinner = function(playerIcon) {
-        // Algorithmically checking diagonals is possible, but a brute force 
-        // check here is simpler since we only ever need to handle a 3x3 grid. 
-        const downDiagonal = [
-            board[0][0], 
-            board[1][1], 
-            board[2][2],
-        ];
-        
-        const downDiagonalMatches = downDiagonal.every(item => item === playerIcon);
-        if (downDiagonalMatches) return true;
-
-        const upDiagonal = [
-            board[2][0], 
-            board[1][1], 
-            board[0][2],
-        ];
-        
-        const upDiagonalMatches = upDiagonal.every(item => item === playerIcon);
-        if (upDiagonalMatches) return true;
-
-        return false;
-    };
-
-    const isBoardFilled = function() {
-        const boardFilled = board.every(row => {
-            return row.every(item => item !== null);
-        });
-        return boardFilled;
-    }
-
     const checkForWin = function(player) {
-        if (rowHasWinner(player.icon) || colHasWinner(player.icon) || diagonalHasWinner(player.icon)) {
+        const winFound = winPatterns.some(pattern =>
+            pattern.every(cell => board[cell] === player.icon)
+        );
+
+        if (winFound) {
             return true;
         } else if (isBoardFilled()) {
             // If no winner exists and board is full, the game is a tie
@@ -87,6 +46,11 @@ const createGameboard = function() {
         } else {
             return false;
         }
+    }
+
+    const isBoardFilled = function() {
+        const boardFilled = board.every(cell => cell !== null);
+        return boardFilled;
     }
 
     return { 
@@ -119,9 +83,9 @@ const createGameController = function(player1, player2) {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
     };
 
-    const playRound = function(row, col) {
+    const playRound = function(cell) {
         if (gameOver) return;
-        const moveAdded = gameboard.addMove(row, col, currentPlayer.icon);
+        const moveAdded = gameboard.addMove(cell, currentPlayer.icon);
         if (!moveAdded) return;
         
         const hasWinner = gameboard.checkForWin(currentPlayer);
@@ -181,20 +145,17 @@ const displayController = (function() {
             boardDisplay.classList.remove('board--disabled');
         }
 
-        board.forEach((row, rowIndex) => {
-            row.forEach((item, colIndex) => {
+        board.forEach((item, itemIndex) => {
                 const cell = document.createElement('button');
                 if (gameController.isGameOver()) {
                     cell.disabled = true;
                 }
-                cell.dataset.row = rowIndex;
-                cell.dataset.col = colIndex;
-                cell.textContent = board[rowIndex][colIndex];
+                cell.dataset.cellIndex = itemIndex; 
+                cell.textContent = board[itemIndex];
 
                 cell.classList.add('board__cell')
 
                 boardDisplay.append(cell);
-            });
         });
     };
 
@@ -238,9 +199,8 @@ const displayController = (function() {
 
     boardDisplay.addEventListener('click', (e) => {
         if (!e.target || !gameController) return;
-        const row = e.target.dataset.row;
-        const col = e.target.dataset.col;
-        gameController.playRound(row, col);
+        const cell = e.target.dataset.cellIndex;
+        gameController.playRound(cell);
         updateDisplay();
     });
 
