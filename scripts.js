@@ -35,7 +35,7 @@ const createGameboard = function() {
 
     const checkForWin = function(player) {
         const winFound = winPatterns.some(pattern =>
-            pattern.every(cell => board[cell] === player.icon)
+            pattern.every(cell => board[cell] === player.id)
         );
 
         if (winFound) {
@@ -85,7 +85,7 @@ const createGameController = function(player1, player2) {
 
     const playRound = function(cell) {
         if (gameOver) return;
-        const moveAdded = gameboard.addMove(cell, currentPlayer.icon);
+        const moveAdded = gameboard.addMove(cell, currentPlayer.id);
         if (!moveAdded) return;
         
         const hasWinner = gameboard.checkForWin(currentPlayer);
@@ -101,11 +101,22 @@ const createGameController = function(player1, player2) {
         return gameOver;
     }
 
+    const getBoardIcons = function() {
+        const board = gameboard.getBoard();
+
+        const iconBoard = board.map(playerID => {
+            if (player1.id === playerID) return player1.icon;
+            if (player2.id === playerID) return player2.icon;
+            return null;
+        })
+        return iconBoard;
+    }
+
     return {
         playRound,
         getCurrentPlayer,
         isGameOver,
-        getBoard: gameboard.getBoard,
+        getBoardIcons,
         checkForWin: gameboard.checkForWin,
     }
 };
@@ -137,7 +148,7 @@ const displayController = (function() {
         };
         boardDisplay.textContent = '';
 
-        const board = gameController.getBoard();
+        const board = gameController.getBoardIcons();
 
         if (gameController.isGameOver()) {
             boardDisplay.classList.add('board--disabled');
