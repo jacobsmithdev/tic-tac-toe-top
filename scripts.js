@@ -15,7 +15,7 @@ const createGameboard = function() {
 
     const getBoard = function() {
         return board;
-    }
+    };
 
     // Expects zero indexed input (e.g. [0] [1] [2], NOT [1], [2], [3])
     const isValidMove = function(cell) {
@@ -46,18 +46,18 @@ const createGameboard = function() {
         } else {
             return false;
         }
-    }
+    };
 
     const isBoardFilled = function() {
         const boardFilled = board.every(cell => cell !== null);
         return boardFilled;
-    }
+    };
 
     return { 
         getBoard,
         addMove, 
         checkForWin,
-    }
+    };
 };
 
 const createPlayer = function(name, id, icon) {
@@ -66,7 +66,7 @@ const createPlayer = function(name, id, icon) {
         id,
         icon
     };
-}
+};
 
 const createGameController = function(player1, player2) {
     const gameboard = createGameboard();
@@ -77,7 +77,7 @@ const createGameController = function(player1, player2) {
 
     const getCurrentPlayer = function() {
         return currentPlayer;
-    }
+    };
 
     const switchCurrentPlayer = function() {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
@@ -99,7 +99,7 @@ const createGameController = function(player1, player2) {
 
     const isGameOver = function() {
         return gameOver;
-    }
+    };
 
     const getBoardIcons = function() {
         const board = gameboard.getBoard();
@@ -108,9 +108,9 @@ const createGameController = function(player1, player2) {
             if (player1.id === playerID) return player1.icon;
             if (player2.id === playerID) return player2.icon;
             return null;
-        })
+        });
         return iconBoard;
-    }
+    };
 
     return {
         playRound,
@@ -118,7 +118,7 @@ const createGameController = function(player1, player2) {
         isGameOver,
         getBoardIcons,
         checkForWin: gameboard.checkForWin,
-    }
+    };
 };
 
 const displayController = (function() {
@@ -177,7 +177,7 @@ const displayController = (function() {
         };
         const currentPlayer = gameController.getCurrentPlayer();
         turnDisplay.textContent = `( ${currentPlayer.icon} ) ${currentPlayer.name}'s turn`
-    }
+    };
 
     const updateFormDisplay = function() {
         if (!gameController || gameController.isGameOver()) {
@@ -185,7 +185,7 @@ const displayController = (function() {
         } else {
             Array.from(form).forEach(fieldset => fieldset.setAttribute('disabled', true));
         }
-    }
+    };
 
     const updateStartBtnDisplay = function() {
         if (!gameController || gameController.isGameOver()) {
@@ -193,7 +193,7 @@ const displayController = (function() {
         } else {
             startBtn.disabled = true;
         }
-    }
+    };
 
     const updateRestartBtnDisplay = function() {
         if (!gameController || gameController.isGameOver()) {
@@ -201,7 +201,7 @@ const displayController = (function() {
         } else {
             restartBtn.disabled = false;
         }
-    }
+    };
 
     restartBtn.addEventListener('click', () => {
         gameController = null;
