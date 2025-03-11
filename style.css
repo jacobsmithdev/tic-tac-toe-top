@@ -29,6 +29,25 @@ img {
     height: auto;
 }
 
+/* Variable Declarations */
+:root {
+    /* Color Variables */
+    /* Shades correspond to numbers from darkest (1) to lightest (2, 3, etc.) */
+    --black: hsl(0, 0%, 0%);
+    --white: hsl(0, 0%, 100%);
+
+    --dark-gray: hsl(0, 0%, 25%);
+
+    --gray-1: hsl(0, 0%, 58%);
+    --gray-2: hsl(0, 0%, 65%);
+
+    --green: hsl(101, 50%, 53%);
+    --green-alt: hsl(101, 63%, 57%);
+
+    --red: hsl(0, 50%, 53%);
+    --red-alt: hsl(0, 71%, 63%);
+}
+
 .layout-wrapper {
     display: grid;
     grid-template-columns: 1fr;
