@@ -46,6 +46,22 @@ img {
 
     --red: hsl(0, 50%, 53%);
     --red-alt: hsl(0, 71%, 63%);
+
+    /* Functional Variables */
+
+    /* Buttons */
+    --button-bg: var(--white);
+
+    --button-color: var(--black);
+    --button-color-hover: var(--dark-gray);
+    --button-color-disabled: var(--gray-1);
+    --button-color-disabled-hover: var(--gray-2);
+    
+    --button-restart-color: var(--red);
+    --button-restart-color-hover: var(--red-alt);
+    
+    --button-start-color: var(--green);
+    --button-start-color-hover: var(--green-alt);
 }
 
 .layout-wrapper {
@@ -142,45 +158,45 @@ img {
 }
 
 .button {
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid var(--button-color);
+    background-color: var(--button-bg);
     padding: 6px 10px;
     font-weight: bold;
 }
 
 .button:hover {
-    border: 2px solid rgb(65, 65, 65);
-    color: rgb(65, 65, 65);
+    border: 2px solid var(--button-color-hover);
+    color: var(--button-primary-hover);
     cursor: pointer;
 }
 
 .button:disabled {
-    border: 2px solid rgb(148, 148, 148);
-    color: rgb(148, 148, 148);
+    border: 2px solid var(--button-color-disabled);
+    color: var(--button-color-disabled);
 }
 
 .button:disabled:hover {
-    border: 2px solid rgb(165, 165, 165);
-    color: rgb(165, 165, 165);
+    border: 2px solid var(--button-color-disabled-hover);
+    color: var(--button-color-disabled-hover);
     cursor: default;
 }
 
 .button--start {
-    border: 2px solid rgb(114, 196, 76);
-    color: rgb(114, 196, 76);
+    border: 2px solid var(--button-start-color);
+    color: var(--button-start-color);;
 }
 
 .button--start:hover {
-    border: 2px solid rgb(120, 214, 76);
-    color: rgb(120, 214, 76);
+    border: 2px solid var(--button-start-color-hover);
+    color: var(--button-start-color-hover);
 }
 
 .button--restart {
-    border: 2px solid rgb(196, 76, 76);
-    color: rgb(196, 76, 76);
+    border: 2px solid var(--button-restart-color);
+    color: var(--button-restart-color);
 }
 
 .button--restart:hover {
-    border: 2px solid rgb(196, 76, 76);
-    color: rgb(196, 76, 76);
+    border: 2px solid var(--button-restart-color-hover);
+    color: var(--button-restart-color-hover);
 }
