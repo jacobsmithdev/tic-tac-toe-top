@@ -256,7 +256,5 @@ const displayController = (function() {
         }
     };
 
-
-
     updateDisplay();
 })();
