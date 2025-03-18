@@ -74,6 +74,10 @@ img {
     /* Legend */
     --legend-bg: var(--black);
     --legend-text: var(--white);
+
+    /* Fieldset */
+    --fieldset-border: var(--black);
+    --fieldset-bg: var(--white);
 }
 
 .layout-wrapper {
@@ -97,7 +101,8 @@ img {
 
 .fieldset {
     flex: 1;
-    border: 1px solid black;
+    border: 1px solid var(--fieldset-border);
+    background-color: var(--fieldset-bg);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-auto-rows: auto;
