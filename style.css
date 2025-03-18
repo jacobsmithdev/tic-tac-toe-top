@@ -66,10 +66,7 @@ img {
     /* Board */
     --board-border: var(--black);
     --board-border-disabled: var(--gray-1);
-
-    --board-cell-bg: var(--white);
-    --board-cell-color: var(--black);
-    --board-cell-color-disabled: var(--gray-1);
+    --board-bg: var(--white);
 
     /* Legend */
     --legend-bg: var(--black);
@@ -157,24 +154,24 @@ img {
 }
 
 .board__cell {
-    border: 1px solid var(--board-cell-color);
-    color: var(--board-cell-color);
-    background-color: var(--board-cell-bg);
+    border: 1px solid var(--board-border);
+    color: var(--board-border);
+    background-color: var(--board-bg);
     font-size: 1.25rem;
 }
 
 .board__cell:disabled {
-    border: 1px solid var(--board-cell-color-disabled);
-    color: var(--board-cell-color-disabled);
+    border: 1px solid var(--board-border-disabled);
+    color: var(--board-border-disabled);
 }
 
 .board__cell:hover {
-    outline: 1px solid var(--board-cell-color);
+    outline: 1px solid var(--board-border);
     font-weight: bold;
 }
 
 .board__cell:disabled:hover {
-    outline: 1px solid var(--board-cell-color-disabled);
+    outline: 1px solid var(--board-border-disabled);
 }
 
 .game-state {
