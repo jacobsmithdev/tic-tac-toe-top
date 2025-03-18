@@ -78,6 +78,12 @@ img {
     /* Fieldset */
     --fieldset-border: var(--black);
     --fieldset-bg: var(--white);
+
+    /* Form Inputs */
+    --input-color: var(--black);
+    --input-bg: var(--white);
+
+    --label-text: var(--black);
 }
 
 .layout-wrapper {
@@ -123,7 +129,8 @@ img {
 }
 
 .fieldset__input {
-    border: 1px solid black;
+    border: 1px solid var(--input-color);
+    background-color: var(--input-bg);
     padding: 4px 8px;
 }
 
