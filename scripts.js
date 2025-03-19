@@ -146,27 +146,20 @@ const displayController = (function() {
             boardDisplay.classList.add('board--disabled');
             return;
         };
-        boardDisplay.textContent = '';
-
-        const board = gameController.getBoardIcons();
-
+        
         if (gameController.isGameOver()) {
             boardDisplay.classList.add('board--disabled');
         } else {
             boardDisplay.classList.remove('board--disabled');
         }
+        
+        const board = gameController.getBoardIcons();
+        const boardDisplayCells = Array.from(boardDisplay.children);
 
-        board.forEach((item, itemIndex) => {
-                const cell = document.createElement('button');
-                if (gameController.isGameOver()) {
-                    cell.disabled = true;
-                }
-                cell.dataset.cellIndex = itemIndex; 
-                cell.textContent = board[itemIndex];
-
-                cell.classList.add('board__cell')
-
-                boardDisplay.append(cell);
+        boardDisplayCells.forEach(cellDisplay => {
+            const index = cellDisplay.dataset.cellIndex;
+            cellDisplay.textContent = board[index] ? board[index] : '';
+            cellDisplay.disabled = gameController.isGameOver() ? true : false;
         });
     };
 
