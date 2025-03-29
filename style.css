@@ -37,6 +37,8 @@ img {
     --white: hsl(0, 0%, 100%);
 
     --dark-gray: hsl(0, 0%, 25%);
+    
+    --navy: hsl(214, 38%, 34%);
 
     --gray-1: hsl(0, 0%, 58%);
     --gray-2: hsl(0, 0%, 65%);
@@ -69,18 +71,22 @@ img {
     --board-bg: var(--white);
 
     /* Legend */
-    --legend-bg: var(--black);
+    --legend-bg: var(--navy);
+    --legend-bg-disabled: var(--black);
     --legend-text: var(--white);
 
     /* Fieldset */
-    --fieldset-border: var(--black);
+    --fieldset-border: var(--navy);
+    --fieldset-border-disabled: var(--black);
     --fieldset-bg: var(--white);
 
     /* Form Inputs */
-    --input-color: var(--black);
+    --input-color: var(--navy);
+    --input-color-disabled: var(--black);
     --input-bg: var(--white);
 
-    --label-text: var(--black);
+    --label-text: var(--navy);
+    --label-text-disabled: var(--black);
 }
 
 .layout-wrapper {
@@ -121,6 +127,7 @@ img {
 }
 
 .fieldset__label {
+    color: var(--label-text);
     font-weight: bold;
     font-size: 0.9rem;
 }
@@ -129,6 +136,22 @@ img {
     border: 1px solid var(--input-color);
     background-color: var(--input-bg);
     padding: 4px 8px;
+}
+
+.fieldset:disabled {
+    border: 1px solid var(--fieldset-border-disabled);
+}
+
+.fieldset:disabled .fieldset__legend {
+    background-color: var(--legend-bg-disabled);
+}
+
+.fieldset:disabled .fieldset__label {
+    color: var(--label-text-disabled);
+}
+
+.fieldset:disabled .fieldset__input {
+    border: 1px solid var(--input-color-disabled);
 }
 
 .game-controls {
