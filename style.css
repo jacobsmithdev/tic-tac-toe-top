@@ -117,6 +117,7 @@ img {
     grid-auto-rows: auto;
     align-items: center;
     gap: 8px;
+    margin: 0;
 }
 
 .fieldset__legend {
