@@ -157,6 +157,9 @@ img {
 .game-controls {
     grid-area: game-controls;
     justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
 .board {
