@@ -97,6 +97,7 @@ img {
                          "game-controls"
                          "gameboard";
     gap: 8px;
+    padding: 16px;
 }
 
 .player-input-form {
