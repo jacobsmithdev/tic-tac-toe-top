@@ -29,6 +29,66 @@ img {
     height: auto;
 }
 
+/* Variable Declarations */
+:root {
+    /* Color Variables */
+    /* Shades correspond to numbers from darkest (1) to lightest (2, 3, etc.) */
+    --black: hsl(0, 0%, 0%);
+    --white: hsl(0, 0%, 100%);
+
+    --dark-gray: hsl(0, 0%, 25%);
+    
+    --navy: hsl(214, 38%, 34%);
+
+    --gray-1: hsl(0, 0%, 58%);
+    --gray-2: hsl(0, 0%, 65%);
+
+    --green: hsl(101, 50%, 53%);
+    --green-alt: hsl(101, 63%, 57%);
+
+    --red: hsl(0, 50%, 53%);
+    --red-alt: hsl(0, 71%, 63%);
+
+    /* Functional Variables */
+
+    /* Buttons */
+    --button-bg: var(--white);
+
+    --button-color: var(--black);
+    --button-color-hover: var(--dark-gray);
+    --button-color-disabled: var(--gray-1);
+    --button-color-disabled-hover: var(--gray-2);
+    
+    --button-restart-color: var(--red);
+    --button-restart-color-hover: var(--red-alt);
+    
+    --button-start-color: var(--green);
+    --button-start-color-hover: var(--green-alt);
+
+    /* Board */
+    --board-border: var(--black);
+    --board-border-disabled: var(--gray-1);
+    --board-bg: var(--white);
+
+    /* Legend */
+    --legend-bg: var(--navy);
+    --legend-bg-disabled: var(--black);
+    --legend-text: var(--white);
+
+    /* Fieldset */
+    --fieldset-border: var(--navy);
+    --fieldset-border-disabled: var(--black);
+    --fieldset-bg: var(--white);
+
+    /* Form Inputs */
+    --input-color: var(--navy);
+    --input-color-disabled: var(--black);
+    --input-bg: var(--white);
+
+    --label-text: var(--navy);
+    --label-text-disabled: var(--black);
+}
+
 .layout-wrapper {
     display: grid;
     grid-template-columns: 1fr;
@@ -37,6 +97,7 @@ img {
                          "game-controls"
                          "gameboard";
     gap: 8px;
+    padding: 16px;
 }
 
 .player-input-form {
@@ -50,34 +111,57 @@ img {
 
 .fieldset {
     flex: 1;
-    border: 1px solid black;
+    border: 1px solid var(--fieldset-border);
+    background-color: var(--fieldset-bg);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-auto-rows: auto;
     align-items: center;
     gap: 8px;
+    margin: 0;
 }
 
 .fieldset__legend {
-    background-color: black;
-    color: white;
+    background-color: var(--legend-bg);
+    color: var(--legend-text);
     font-weight: bold;
     padding: 4px 8px;
 }
 
 .fieldset__label {
+    color: var(--label-text);
     font-weight: bold;
     font-size: 0.9rem;
 }
 
 .fieldset__input {
-    border: 1px solid black;
+    border: 1px solid var(--input-color);
+    background-color: var(--input-bg);
     padding: 4px 8px;
+}
+
+.fieldset:disabled {
+    border: 1px solid var(--fieldset-border-disabled);
+}
+
+.fieldset:disabled .fieldset__legend {
+    background-color: var(--legend-bg-disabled);
+}
+
+.fieldset:disabled .fieldset__label {
+    color: var(--label-text-disabled);
+}
+
+.fieldset:disabled .fieldset__input {
+    border: 1px solid var(--input-color-disabled);
 }
 
 .game-controls {
     grid-area: game-controls;
     justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
 .board {
@@ -90,32 +174,32 @@ img {
     justify-self: center;
     gap: 8px;
     padding: 8px;
-    border: 1px solid black;
+    border: 1px solid var(--board-border);
 }
 
 .board--disabled {
-    border: 1px solid rgb(148, 148, 148);
+    border: 1px solid var(--board-border-disabled);
 }
 
 .board__cell {
-    border: 1px solid black;
-    color: black;
-    background-color: white;
+    border: 1px solid var(--board-border);
+    color: var(--board-border);
+    background-color: var(--board-bg);
     font-size: 1.25rem;
 }
 
 .board__cell:disabled {
-    border: 1px solid rgb(148, 148, 148);
-    color: rgb(148, 148, 148);
+    border: 1px solid var(--board-border-disabled);
+    color: var(--board-border-disabled);
 }
 
 .board__cell:hover {
-    outline: 1px solid black;
+    outline: 1px solid var(--board-border);
     font-weight: bold;
 }
 
 .board__cell:disabled:hover {
-    outline: 1px solid rgb(148, 148, 148);
+    outline: 1px solid var(--board-border-disabled);
 }
 
 .game-state {
@@ -123,45 +207,45 @@ img {
 }
 
 .button {
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid var(--button-color);
+    background-color: var(--button-bg);
     padding: 6px 10px;
     font-weight: bold;
 }
 
 .button:hover {
-    border: 2px solid rgb(65, 65, 65);
-    color: rgb(65, 65, 65);
+    border: 2px solid var(--button-color-hover);
+    color: var(--button-primary-hover);
     cursor: pointer;
 }
 
 .button:disabled {
-    border: 2px solid rgb(148, 148, 148);
-    color: rgb(148, 148, 148);
+    border: 2px solid var(--button-color-disabled);
+    color: var(--button-color-disabled);
 }
 
 .button:disabled:hover {
-    border: 2px solid rgb(165, 165, 165);
-    color: rgb(165, 165, 165);
+    border: 2px solid var(--button-color-disabled-hover);
+    color: var(--button-color-disabled-hover);
     cursor: default;
 }
 
 .button--start {
-    border: 2px solid rgb(114, 196, 76);
-    color: rgb(114, 196, 76);
+    border: 2px solid var(--button-start-color);
+    color: var(--button-start-color);;
 }
 
 .button--start:hover {
-    border: 2px solid rgb(120, 214, 76);
-    color: rgb(120, 214, 76);
+    border: 2px solid var(--button-start-color-hover);
+    color: var(--button-start-color-hover);
 }
 
 .button--restart {
-    border: 2px solid rgb(196, 76, 76);
-    color: rgb(196, 76, 76);
+    border: 2px solid var(--button-restart-color);
+    color: var(--button-restart-color);
 }
 
 .button--restart:hover {
-    border: 2px solid rgb(196, 76, 76);
-    color: rgb(196, 76, 76);
+    border: 2px solid var(--button-restart-color-hover);
+    color: var(--button-restart-color-hover);
 }
