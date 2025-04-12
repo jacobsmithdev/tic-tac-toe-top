@@ -87,6 +87,9 @@ img {
 
     --label-text: var(--navy);
     --label-text-disabled: var(--black);
+
+    --credit-text: var(--gray-2);
+    --credit-text-hover: var(--gray-1);
 }
 
 .layout-wrapper {
@@ -95,7 +98,8 @@ img {
     grid-template-rows: auto auto 1fr;
     grid-template-areas: "player-input-form"
                          "game-controls"
-                         "gameboard";
+                         "gameboard"
+                         "credit";
     gap: 8px;
     padding: 16px;
 }
@@ -248,4 +252,25 @@ img {
 .button--restart:hover {
     border: 2px solid var(--button-restart-color-hover);
     color: var(--button-restart-color-hover);
+}
+
+.credit-list {
+    grid-area: credit;
+    color: var(--credit-text);
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.credit-list__link {
+    color: var(--credit-text);
+    text-decoration: none;
+    justify-self: center;
+}
+
+.credit-list__link:hover {
+    color: var(--credit-text-hover);
+    text-decoration: underline;
 }
