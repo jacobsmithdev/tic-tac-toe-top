@@ -239,7 +239,7 @@ const displayController = (function() {
         const currentPlayer = gameController.getCurrentPlayer();
         const hasWinner = gameController.checkForWin(currentPlayer);
         if (hasWinner) {
-            resultDisplay.textContent = `${currentPlayer.name} (${currentPlayer.icon}) wins!`;
+            resultDisplay.textContent = `${currentPlayer.name} ( ${currentPlayer.icon} ) wins!`;
         } else if (hasWinner === null) {
             resultDisplay.textContent = 'tie!';
         } else {
