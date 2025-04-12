@@ -2,7 +2,7 @@
 My tic-tac-toe game, made for The Odin Project. 
 
 ## Live Preview
-See a [live preview](https://jsmith-code.github.io/tic-tac-toe-top/).
+See a [live preview](https://jacobsmithdev.github.io/tic-tac-toe-top/).
 
 ![site preview](./img/site_preview.png)
 
